@@ -1,0 +1,19 @@
+- name: Deploying site
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: cloudformation stack
+      cloudformation:
+        region: eu-central-1
+        stack_name: my-website
+        template: cloudformation_template.yml
+      register: stack_result
+
+    - name: upload blog
+      command: aws s3 sync --region eu-central-1 --delete . s3://{{ stack_result.stack_outputs.S3Bucket }}
+      args:
+        chdir: site/
+
+    - name: output url
+      debug:
+        msg: Site is live at http://{{ stack_result.stack_outputs.S3Bucket }}.s3-website.eu-central-1.amazonaws.com

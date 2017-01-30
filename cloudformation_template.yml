@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: The site
+
+Resources:
+
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      WebsiteConfiguration:
+        ErrorDocument: 404.html
+        IndexDocument: index.html
+
+  S3BucketPolicy:
+   Type: AWS::S3::BucketPolicy
+   Properties:
+     Bucket: !Ref S3Bucket
+     PolicyDocument:
+      Version: 2012-10-17
+      Statement:
+      # Make the site public - allow everyone in the world to get objects from
+      # the bucket
+      - Effect: Allow
+        Principal: '*'
+        Action:
+        - s3:GetObject
+        Resource: !Sub arn:aws:s3:::${S3Bucket}/*
+
+Outputs:
+
+  S3Bucket:
+    Value: !Ref S3Bucket
