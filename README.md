@@ -51,6 +51,17 @@ Questions
    Change the Ansible playbook so that it [turns on Request Metrics][turn_on]
    for the bucket (it's not supported by CloudFormation at the moment).
 
+Answers
+-------
+
+1. (Make your changes in other files, or if you can't finish, explain here how
+   far you got)
+
+2. ...
+
+3. (Make your changes in other files, or if you can't finish, explain here how
+   far you got)
+
 [aws_configure]: https://boto3.readthedocs.io/en/latest/guide/configuration.html
 [routing_rule]: https://docs.aws.amazon.com/AmazonS3/latest/dev/HowDoIWebsiteConfiguration.html#configure-bucket-as-website-routing-rule-syntax
 [cf_bucket]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
